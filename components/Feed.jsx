@@ -9,7 +9,7 @@ const PromptCardList = ( {data, handleTagClick }) => {
     {
       data.map((post) => (
         <PromptCard 
-        key={post.id}
+        key={post._id}
         post={post}
         handleTagClick={handleTagClick}
         />
@@ -28,6 +28,21 @@ export default function Feed() {
   const [searchText, setSearchText] = useState("")
   const [searchTimeOut, setSearchTimeOut] = useState(null)
   const [searchResults, setSearchResults] = useState([])
+
+  
+  const fetchPosts = async() => {
+    const response = await fetch('/api/prompt')
+    const data = await response.json()
+
+    setPosts(data)
+  }
+ 
+
+  useEffect(()=> {
+      
+        fetchPosts()
+
+  }, [])
 
   function filteredPrompts(searchtext){
     const regEx = new RegExp(searchtext, "i") // i - means case-insesnstitive search
@@ -56,17 +71,6 @@ export default function Feed() {
     setSearchResults(searchResults)
   }
 
-  useEffect(()=> {
-      const fetchPosts = async() => {
-        const response = await fetch('/api/prompt')
-        const data = await response.json()
-
-        setPosts(data)
-      }
-     
-        fetchPosts()
-
-  }, [])
 
   return (
     <section className='feed'>
