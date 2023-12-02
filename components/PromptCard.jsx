@@ -53,8 +53,9 @@ export default function PromptCard({post, handleTagClick, handleEdit, handleDele
             src={copied === post.prompt 
             ? '/assets/icons/tick.svg' 
           : '/assets/icons/copy.svg'}
-          width={12}
-          height={12}
+            width={12}
+            height={12}
+            alt=''
             />
         </div>
       </div>
