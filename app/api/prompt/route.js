@@ -4,7 +4,7 @@ import Prompt from "@models/prompt"
 import User from '@models/user'
 
 
-export const GET = async(req, res) => {
+export const GET = async(request) => {
   // try{
 
   //   await connectToDB()
